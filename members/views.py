@@ -8,6 +8,7 @@ from .models import Evento
 from .forms import eventoForm
 import json
 from django.http import JsonResponse
+
 # Create your views here.
 
 def inicio(request):
@@ -81,8 +82,12 @@ def eliminarEvento(request, eventoid):
     return redirect('eventos')
 def obtenerUsuarioID(request, id):
     variable = 3
-    usuarios = Usuarios.objects.get(id=variable)
+    usuarios = Usuarios.objects.get(id=id)
     dicci = f'{{"name" : {usuarios.nombre}, "Correo" : {usuarios.correo}}}'
-    print(dicci)
-    #return JsonResponse({dicci})
-    return redirect(login)
+    #a = json.dumps(dicci)
+    return HttpResponse(json.dumps(dicci),content_type="application/json")
+    #return HttpResponse(dicci)
+def mostrarPuntosTuristicos(request):
+    informacion = PuntoTuristico.objects.all()
+    diccionario = [model for model in informacion.values()]
+    return HttpResponse(json.dumps(diccionario),content_type="application/json")

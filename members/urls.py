@@ -19,4 +19,5 @@ urlpatterns = [
     path('eliminarE/<int:eventoid>',views.eliminarEvento, name="eliminarEvento"),
     path('eventos/modificarEvento/<int:eventoid>',views.modificarEvento, name="modificarEvento"),
     path('obtenerUsuarioID/<int:id>', views.obtenerUsuarioID, name="obtenerUsuarioID"),
+    path('mostrarPuntosTuristicos', views.mostrarPuntosTuristicos, name="ostrarPuntosTuristicos"),
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
