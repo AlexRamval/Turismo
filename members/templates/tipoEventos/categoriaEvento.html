@@ -27,48 +27,24 @@
             </div>
         </nav>
     <div class="container p-5 my-5 bg-dark text-white">
-        <h1>Lista de puntos Turisticos</h1>
+        <h1>Lista de categorías</h1>
         <p></p>
-
-    <div class="container">
-  <div class="row">
-    <div class="col-sm-4">
-        <a href="{% url 'crearPunto' %}" class="btn btn-success" role="button" >Agregar nuevo punto</a>
-    </div>
-    <div class="col-sm-4">
-
-    </div>
-    <div class="col-sm-4">
-
-       <form class="d-flex" method="GET">
-          <input class="form-control me-2" type="search" name="Buscar" placeholder="Buscar" aria-label="Search" value="{{ request.GET.Buscar }}">
-          <button class="btn btn-success" type="submit">Buscar</button>
-        </form>
-    </div>
-  </div>
-</div>
-
+        <a href="{% url 'crearTipoEvento' %}" class="btn btn-success" role="button" >Agregar nueva categoría</a>
         <table class="table table-dark table-hover">
             <thead>
               <tr>
                 <th>Nombre</th>
-                <th>Dirección</th>
-                  <th>Categoría</th>
-                <th>Imagen</th>
                   <th>Acciones</th>
               </tr>
             </thead>
             <tbody>
               <tr>
-                  {% for puntos in puntos %}
-                <td>{{ puntos.puntoNombre }}</td>
-                <td>{{ puntos.puntoDir }}</td>
-                      <td>{{ puntos.puntoCatID }}</td>
-                <td><img src="{{ puntos.url.url }}" height=100></td>
+                  {% for tipoEventos in tipoEventos %}
+                <td>{{ tipoEventos.cateventodescrip }}</td>
                   <td>
-                  <a name="" id="" class="btn btn-info" href="{% url 'modificarPunto' puntos.puntoID %}" role="button">Editar</a>
-                      <p></p>
-                  <a name="" id="" class="btn btn-danger" href="{% url 'eliminarPunto' puntos.puntoID %}" role="button">Borrar</a>
+                  <a name="" id="" class="btn btn-info" href="{% url 'ModificarTipoEvento' tipoEventos.cateventoid %}" role="button">Editar</a>
+                  |
+                  <a name="" id="" class="btn btn-danger" href="{% url 'eliminarTipoEvento' tipoEventos.cateventoid %}" role="button">Borrar</a>
                 </td>
               </tr>
             {% endfor %}

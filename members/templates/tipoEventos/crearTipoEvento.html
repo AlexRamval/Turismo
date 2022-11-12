@@ -27,53 +27,27 @@
             </div>
         </nav>
     <div class="container p-5 my-5 bg-dark text-white">
-        <h1>Lista de puntos Turisticos</h1>
-        <p></p>
 
-    <div class="container">
-  <div class="row">
-    <div class="col-sm-4">
-        <a href="{% url 'crearPunto' %}" class="btn btn-success" role="button" >Agregar nuevo punto</a>
-    </div>
-    <div class="col-sm-4">
+       <h2>Datos</h2>
+          <form enctype="multipart/form-data" method="post">
+              {% csrf_token %}
+              {% for campo in formulario %}
+              <div class="mb-3">
+                  <label for="" class="form-label">{{ campo.label }}</label>
 
-    </div>
-    <div class="col-sm-4">
+                  <input type="{{ campo.field.widget.input_type }}"
+                         class="form-control"
+                         name="{{ campo.name }}"
+                         id=""
+                         aria-describedby="helpId"
+                         placeholder="{{ campo.label }}" />
 
-       <form class="d-flex" method="GET">
-          <input class="form-control me-2" type="search" name="Buscar" placeholder="Buscar" aria-label="Search" value="{{ request.GET.Buscar }}">
-          <button class="btn btn-success" type="submit">Buscar</button>
-        </form>
-    </div>
-  </div>
-</div>
+              </div>
+                  <div class="col-12 help-text"> {{ campo.errors }} </div>
+              {% endfor %}
 
-        <table class="table table-dark table-hover">
-            <thead>
-              <tr>
-                <th>Nombre</th>
-                <th>Dirección</th>
-                  <th>Categoría</th>
-                <th>Imagen</th>
-                  <th>Acciones</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                  {% for puntos in puntos %}
-                <td>{{ puntos.puntoNombre }}</td>
-                <td>{{ puntos.puntoDir }}</td>
-                      <td>{{ puntos.puntoCatID }}</td>
-                <td><img src="{{ puntos.url.url }}" height=100></td>
-                  <td>
-                  <a name="" id="" class="btn btn-info" href="{% url 'modificarPunto' puntos.puntoID %}" role="button">Editar</a>
-                      <p></p>
-                  <a name="" id="" class="btn btn-danger" href="{% url 'eliminarPunto' puntos.puntoID %}" role="button">Borrar</a>
-                </td>
-              </tr>
-            {% endfor %}
-            </tbody>
-          </table>
+          <input name="" id="" class="btn btn-success" type="submit" value="Registrar categoría">
+          </form>
       </div>
 
 <h1></h1>
