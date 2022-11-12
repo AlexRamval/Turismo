@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Turismo en Obregón</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css" integrity="sha384-r4NyP46KrjDleawBgD5tp8Y7UzmLA05oM1iAEQ17CSuDqnUK2+k9luXQOfXJCJ4I" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.min.js" integrity="sha384-oesi62hOLfzrys4LxRF63OJCXdXDipiYWBnvTl9Y9/TRlw5xlKIEHpNyvvDShgf/" crossorigin="anonymous"></script>
+</head>
+<body>
+
+<nav class="navbar navbar-expand-sm navbar-light bg-primary">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="{% url 'vistaP' %}">Punto Turistico</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarID"
+                    aria-controls="navbarID" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarID">
+                    <div class="navbar-nav">
+                        <a class="nav-link active" aria-current="page" href="{% url 'login' %}">Usuarios</a>
+                        <a class="nav-link active" aria-current="page" href="{% url 'eventos' %}">Eventos</a>
+
+                    </div>
+                </div>
+            </div>
+        </nav>
+    <div class="container p-5 my-5 bg-dark text-white">
+
+       <h2>Datos</h2>
+          <form enctype="multipart/form-data" method="post">
+              {% csrf_token %}
+              {% for campo in formulario %}
+              <div class="mb-3">
+                  <label for="" class="form-label">{{ campo.label }}</label>
+
+                  <input type="{{ campo.field.widget.input_type }}"
+                         class="form-control"
+                         name="{{ campo.name }}"
+                         id=""
+                         aria-describedby="helpId"
+                         placeholder="{{ campo.label }}"
+                         value="{{ campo.value | default:'' }}"
+                  />
+
+              </div>
+                  <div class="col-12 help-text"> {{ campo.errors }} </div>
+              {% endfor %}
+
+          <input name="" id="" class="btn btn-success" type="submit" value="Guardar cambios">
+          </form>
+      </div>
+
+<h1></h1>
+</body>
+</html>
